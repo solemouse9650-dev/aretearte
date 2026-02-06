@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areté Apostoles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
+
+        .hero{
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            color:#fff;padding:100px 20px;text-align:center;
+            min-height:60vh;display:flex;flex-direction:column;
+            justify-content:center;align-items:center
+        }
+
+        .btn{
+            background:#fff;color:#667eea;padding:15px 30px;
+            border-radius:50px;text-decoration:none;font-weight:600;
+            border:none;cursor:pointer
+        }
+
+        .productos{padding:60px 20px;max-width:1200px;margin:auto}
+        .productos h2{text-align:center;font-size:2.5rem;margin-bottom:40px}
+
+        .productos-grid{
+            display:flex;flex-wrap:wrap;gap:30px;justify-content:center
+        }
+
+        .producto{
+            background:#fff;border-radius:10px;
+            box-shadow:0 4px 8px rgba(0,0,0,.1);
+            max-width:300px;flex:1 1 300px;
+            transition:.3s
+        }
+
+        .producto.hidden{display:none}
+
+        .producto img{width:100%;height:200px;object-fit:cover}
+        .producto-content{padding:20px}
+
+        .contactar-btn{
+            background:#667eea;color:#fff;
+            padding:10px 20px;border:none;
+            border-radius:5px;cursor:pointer
+        }
+
+        .categoria-btn{
+            width:80%;
+            margin-top:10px;
+            background:#ebe4e4;
+            color:#5b96e4;
+            padding:10px;
+            border:none;
+            border-radius:50px;
+            cursor:pointer
+        }
+
+        .contacto{
+            background:#333;color:#fff;
+            padding:60px 20px;text-align:center
+        }
+
+        @media(max-width:768px){
+            .productos-grid{flex-direction:column;align-items:center}
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="hero" id="hero">
+    <h1><img src="Areté logo.jpg" alt=""></h1>
+    <p>La Excelencia en el Arte</p>
+    <a href="#productos" class="btn">Ver productos</a>
+</section>
+
+<section class="productos" id="productos">
+    <h2>Nuestros Productos</h2>
+    <div class="productos-grid" id="productos-grid"></div>
+</section>
+
+<section class="contacto">
+    <h2>¿Quienes somos?</h2>
+    <p>Una galería de Arte en Vitrofusion
+
+Excelencia, diseño y color. 
+
+Piezas únicas para uso o decoración de acuerdo al gusto o necesidad. Obras de arte, Productos para uso cotidiano, Piezas decorativas, Accesorios, Pequeñas Esculturas, Bijou y más.</p>
+</section>
+
+<section class="contacto">
+    <h2>Contactanos</h2>
+    <p style="margin:20px 0 30px;">
+        Si querés más información sobre nuestros productos o hacer un pedido personalizado,
+        escribinos directamente por WhatsApp.
+    </p>
+    <a href="https://wa.me/5493758567371" class="btn">Escribinos por WhatsApp</a>
+</section>
+
+<script>
+const productos = [
+ {nombre:"Llavero ",categoria:"Llaveros",imagen:"llaveros.jpg"},
+ {nombre:"Llavero cruz",categoria:"Llaveros",imagen:"llavero cruz.jpg"},
+ {nombre:"Movil osito",categoria:"Movil",imagen:"moviles osito.jpg"},
+ {nombre:"Escarapelas",categoria:"Movil",imagen:"escarapelas.jpg"},
+ {nombre:"Llavero personalizado",categoria:"Llaveros",imagen:"pili llavero.jpeg"},
+
+
+ {nombre:"Aritos vitrofusión",categoria:"Bijou",imagen:"aros en vitrofusion.jpg"},
+ {nombre:"Conjunto bijou",categoria:"Bijou",imagen:"conjuntos bijou.jpg"},
+ {nombre:"Arito + anillo",categoria:"Bijou",imagen:"conjunto arito y anillo.jpg"},
+
+ {nombre:"Plato redondo",categoria:"Platos",imagen:"plato redondo.jpg"},
+ {nombre:"Plato cuadrado",categoria:"Platos",imagen:"plato matecito.jpg"},
+ {nombre:"Plato Guembe",categoria:"Platos",imagen:"plato guembe.jpg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato1.jpeg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato2.jpeg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato3.jpeg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato4.jpeg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato5.jpeg"},
+ {nombre:"Platos",categoria:"Platos",imagen:"img plato6.jpeg"},
+
+
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espiral.jpg"},
+ {nombre:"Porta macetas o fanal",categoria:"Portadores",imagen:"porta mecetas o fanal.jpg"},
+ {nombre:"Mate mini esculturita",categoria:"Movil",imagen:"mate mini escultura.jpg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales1.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales2.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales3.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales4.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales5.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales6.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales7.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales8.jpeg"},
+ {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales9.jpeg"},
+
+
+ {nombre:"Bacha para baño",categoria:"Decoración",imagen:"bacha apra baño.jpg"},
+ {nombre:"Fuente circular enrejada",categoria:"Fuente Y Posatorta",imagen:"fuente circular enrejada.jpg"},
+ {nombre:"Centro de mesa",categoria:"Decoración",imagen:"centro de mesa.jpg"},
+ {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada1.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada2.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada3.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada4.jpeg"},
+ {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada5.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada6.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada7.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada8.jpeg"},
+ {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada9.jpeg"},
+ {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada10.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada11.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada12.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada13.jpeg"},
+ {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada14.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada15.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada16.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada17.jpeg"},
+ {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada18.jpeg"},
+
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios1.jpeg"},
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios2.jpeg"},
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios3.jpeg"},
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios4.jpeg"},
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios5.jpeg"},
+ {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios6.jpeg"},
+
+];
+
+const grid = document.getElementById("productos-grid");
+const categorias = {};
+
+productos.forEach(p=>{
+    if(!categorias[p.categoria]) categorias[p.categoria]=[];
+    categorias[p.categoria].push(p);
+});
+
+Object.keys(categorias).forEach(cat=>{
+    const items = categorias[cat];
+
+    items.forEach((p,i)=>{
+        const div=document.createElement("div");
+        div.className="producto"+(i>0?" hidden":"");
+        div.dataset.cat=cat;
+        div.innerHTML=`
+            <img src="${p.imagen}">
+            <div class="producto-content">
+                <h3>${p.nombre}</h3>
+                <button class="contactar-btn" data-nombre="${p.nombre}" data-categoria="${p.categoria}">Contactar</button>
+            </div>`;
+        grid.appendChild(div);
+    });
+
+    const btn=document.createElement("button");
+    btn.className="categoria-btn";
+    btn.textContent=`Ver más ${cat}`;
+    btn.onclick=()=>{
+        const prods=[...document.querySelectorAll(`[data-cat='${cat}']`)];
+        const hidden=prods.some(p=>p.classList.contains("hidden"));
+        prods.forEach((p,i)=>{if(i>0)p.classList.toggle("hidden",!hidden)});
+        btn.textContent=hidden?`Ver menos ${cat}`:`Ver más ${cat}`;
+    };
+    grid.appendChild(btn);
+});
+
+grid.addEventListener("click",e=>{
+    if(e.target.classList.contains("contactar-btn")){
+        const nombre = e.target.dataset.nombre;
+        const categoria = e.target.dataset.categoria;
+        const mensaje = `Hola! Quiero información sobre ${nombre} (${categoria})`;
+        window.open(
+            `https://wa.me/5493758567371?text=${encodeURIComponent(mensaje)}`,
+            "_blank"
+        );
+    }
+});
+</script>
+
+</body>
+</html>
