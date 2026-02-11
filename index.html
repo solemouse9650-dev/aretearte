@@ -125,7 +125,7 @@ body{
         background-image:url("fondo arete 8.jpg");
     }
     100%{
-        background-image:url("fondo arete 9.jpg");
+        background-image:url("fondo arete  4.jpeg");
     }
 }
 
@@ -151,9 +151,51 @@ body{
     object-fit:contain;
 }
 
+/* LIGHTBOX */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+    animation: zoom 0.3s ease;
+}
+
+@keyframes zoom {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img">
+</div>
 
 <body>
 
@@ -186,7 +228,7 @@ Piezas únicas para uso o decoración de acuerdo al gusto o necesidad. Obras de 
     <a href="https://wa.me/5493758567371" class="btn">Escribinos por WhatsApp</a>
     <a href="https://www.instagram.com/arete.galeriadearte/" class="btn">Nuestro Instagram</a>
     <a href="https://www.facebook.com/people/Aret%C3%A9/100077355066538/?locale=zh_CN#" class="btn">Nuestro Facebook</a>
-    <a href="https://wa.me/5493758502801?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20sus%20webs%20" class="btn">Hecho por: <img src="ChatGPT Image 11 feb 2026, 13_33_38.png" alt=""></a>
+    <a href="https://wa.me/5493758502801?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20sus%20webs%20" class="btn"><img src="ChatGPT Image 11 feb 2026, 13_33_38.png" alt=""></a>
 
 </section>
 
@@ -194,14 +236,33 @@ Piezas únicas para uso o decoración de acuerdo al gusto o necesidad. Obras de 
 const productos = [
  {nombre:"Llavero ",categoria:"Llaveros",imagen:"llaveros.jpg"},
  {nombre:"Llavero cruz",categoria:"Llaveros",imagen:"llavero cruz.jpg"},
+
  {nombre:"Movil osito",categoria:"Movil",imagen:"moviles osito.jpg"},
  {nombre:"Escarapelas",categoria:"Movil",imagen:"escarapelas.jpg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"mowiles.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"movilkes.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"mobiles.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"movilse.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"molvives.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"movwiles.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"mowiless.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"mowilkes3.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"moviles22.jpeg"},
+ {nombre:"Moviles",categoria:"Movil",imagen:"moviles33.jpeg"},
+
+ {nombre:"Mate mini esculturitas",categoria:"Mini esculturitas",imagen:"mate mini escultura.jpg"},
+ {nombre:"Mate mini esculturitas",categoria:"Mini esculturitas",imagen:"mate mini escultutita.jpeg"},
+ 
  {nombre:"Llavero personalizado",categoria:"Llaveros",imagen:"pili llavero.jpeg"},
 
 
  {nombre:"Aritos vitrofusión",categoria:"Bijou",imagen:"aros en vitrofusion.jpg"},
  {nombre:"Conjunto bijou",categoria:"Bijou",imagen:"conjuntos bijou.jpg"},
  {nombre:"Arito + anillo",categoria:"Bijou",imagen:"conjunto arito y anillo.jpg"},
+ {nombre:"Bijou",categoria:"Bijou",imagen:"bijouuuu.jpeg"},
+ {nombre:"Arito + anillo",categoria:"Bijou",imagen:"bijouclg.jpeg"},
+
+
 
  {nombre:"Plato redondo",categoria:"Platos",imagen:"plato redondo.jpg"},
  {nombre:"Plato cuadrado",categoria:"Platos",imagen:"plato matecito.jpg"},
@@ -215,8 +276,7 @@ const productos = [
 
 
  {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espiral.jpg"},
- {nombre:"Porta macetas o fanal",categoria:"Portadores",imagen:"porta mecetas o fanal.jpg"},
- {nombre:"Mate mini esculturita",categoria:"Movil",imagen:"mate mini escultura.jpg"},
+ {nombre:"Mate mini esculturita",categoria:"Mini esculturitas",imagen:"esculturitamate.jpeg"},
  {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales1.jpeg"},
  {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales2.jpeg"},
  {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales3.jpeg"},
@@ -256,6 +316,15 @@ const productos = [
  {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios4.jpeg"},
  {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios5.jpeg"},
  {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios6.jpeg"},
+
+  {nombre:"Porta Maceta",categoria:"Diseños",imagen:"porta mecetas o fanal.jpg"},
+  {nombre:"Escarapelas",categoria:"Diseños",imagen:"escarapelas.jpg"},
+  {nombre:"Tutores",categoria:"Diseños",imagen:"padres.jpeg"},
+  {nombre:"Tutores",categoria:"Diseños",imagen:"tutores.jpeg"},
+
+
+
+ 
 
 ];
 
@@ -304,6 +373,27 @@ grid.addEventListener("click",e=>{
             `https://wa.me/5493758567371?text=${encodeURIComponent(mensaje)}`,
             "_blank"
         );
+    }
+});
+const images = document.querySelectorAll("img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeBtn = document.querySelector(".close");
+
+images.forEach(img => {
+    img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    });
+});
+
+closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+});
+
+lightbox.addEventListener("click", (e) => {
+    if (e.target !== lightboxImg) {
+        lightbox.style.display = "none";
     }
 });
 </script>
