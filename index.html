@@ -3,402 +3,1582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Areté | Galería de Arte en Vitrofusión en Apóstoles, Misiones</title>
-
-    <meta name="description" content="Areté es una galería de arte en vitrofusión en Apóstoles, Misiones. Piezas únicas, decoración, bijou y arte en vidrio hechos a mano.">
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-
+    <meta name="description" content="Areté - Galería Premium de arte en vitrofusión. Piezas únicas hechas a mano. Tienda online profesional.">
+    <meta name="keywords" content="vitrofusión, arte en vidrio, bijou, decoración, tienda online">
+    <title>ARETÉ | Galería Premium de Vitrofusión</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Poppins',sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
-
-        .hero{
-            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-            color:#fff;padding:100px 20px;text-align:center;
-            min-height:60vh;display:flex;flex-direction:column;
-            justify-content:center;align-items:center
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --text: #2d3748;
+            --text-light: #718096;
+            --white: #fff;
+            --border: #e2e8f0;
+            --success: #48bb78;
+            --danger: #e53e3e;
         }
 
-        .btn{
-            background:#fff;color:#667eea;padding:15px 30px;
-            border-radius:50px;text-decoration:none;font-weight:600;
-            border:none;cursor:pointer
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .productos{padding:60px 20px;max-width:1200px;margin:auto}
-        .productos h2{text-align:center;font-size:2.5rem;margin-bottom:40px}
-
-        .productos-grid{
-            display:flex;flex-wrap:wrap;gap:30px;justify-content:center
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
-        .producto{
-            background:#fff;border-radius:10px;
-            box-shadow:0 4px 8px rgba(0,0,0,.1);
-            max-width:300px;flex:1 1 300px;
-            transition:.3s
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: var(--light);
+            overflow-x: hidden;
         }
 
-        .producto.hidden{display:none}
-
-        .producto img{width:100%;height:200px;object-fit:cover}
-        .producto-content{padding:20px}
-
-        .contactar-btn{
-            background:#667eea;color:#fff;
-            padding:10px 20px;border:none;
-            border-radius:5px;cursor:pointer
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .categoria-btn{
-            width:80%;
-            margin-top:10px;
-            background:#ebe4e4;
-            color:#5b96e4;
-            padding:10px;
-            border:none;
-            border-radius:50px;
-            cursor:pointer
+        /* LOADING */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s;
         }
 
-        .contacto{
-            background:#333;color:#fff;
-            padding:60px 20px;text-align:center
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        @media(max-width:768px){
-            .productos-grid{flex-direction:column;align-items:center}
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top: 4px solid var(--white);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-cart {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--danger);
+            color: var(--white);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .toggle-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%), url('fondi%C3%B1o.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* SECTION */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* CATEGORIES */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .category-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* PRODUCTS */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            background: var(--white);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .add-cart-btn {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            width: 50px;
+            text-align: center;
+        }
+
+        .contact-card strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card span {
+            display: block;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* SURVEY */
+        .survey-box {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 3rem auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .survey-box p {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2rem;
+            color: var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .rating-stars input:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: #f6ad55;
+            transform: scale(1.2);
+        }
+
+        /* CART SIDEBAR */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--text);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-category {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light);
+            border-radius: 6px;
+            width: fit-content;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .qty-display {
+            padding: 0 0.75rem;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .cart-empty i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--success);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+            z-index: 9998;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-    .contacto a.btn {
-        display: block;
-        width: 100%;
-        max-width: 320px;
-        margin: 12px auto;
-        text-align: center;
-        padding: 14px 20px;
-        font-size: 0.95rem;
-    }
-}
-.contacto a.btn {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transition: 0.3s;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            }
 
-.contacto a.btn:active {
-    transform: scale(0.97);
-}
+            .nav-menu.open {
+                left: 0;
+            }
 
-body{
-    font-family:'Poppins',sans-serif;
-    line-height:1.6;
-    color:#333;
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    animation:fondoAnimado 24s linear infinite;
-}
+            .toggle-menu {
+                display: block;
+            }
 
-@keyframes fondoAnimado{
-    0%{
-        background-image:url("fondo arete 1.jpg");
-    }
-    25%{
-        background-image:url("fondo arete 3.jpg");
-    }
+            .hero {
+                margin-top: 60px;
+                min-height: 80vh;
+            }
 
-    26%{
-        background-image:url("fondo arete  4.jpeg");
-    }
-    50%{
-        background-image:url("fondo arete 5.jpg");
-    }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
 
-    60%{
-        background-image:url("fondo arete6.jpg");
-    }
-    75%{
-        background-image:url("fondo arete 7.jpg");
-    }
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
 
-    76%{
-        background-image:url("fondo arete 8.jpg");
-    }
-    100%{
-        background-image:url("fondo arete  4.jpeg");
-    }
-}
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
 
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
 
-.btn{
-    background:#fff;
-    color:#667eea;
-    padding:15px 30px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:600;
-    border:none;
-    cursor:pointer;
+            .container {
+                padding: 0 1rem;
+            }
 
-    display:inline-flex;          /* importante */
-    align-items:center;           /* centra vertical */
-    gap:10px;                     /* espacio texto-imagen */
-}
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-.btn img{
-    width:24px;       /* tamaño del logo */
-    height:24px;
-    object-fit:contain;
-}
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
 
-/* LIGHTBOX */
+            .section-title {
+                font-size: 1.75rem;
+            }
 
-.lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-}
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
 
-.lightbox img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 12px;
-    animation: zoom 0.3s ease;
-}
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
 
-@keyframes zoom {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-}
+            .social-links {
+                justify-content: center;
+            }
+        }
 
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: slideIn 0.3s ease;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.95);
+            transform: scale(1.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="style.css">
 </head>
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-img" id="lightbox-img">
-</div>
-
 <body>
+    <!-- LOADING -->
+    <div class="loading-screen" id="loading">
+        <div class="spinner"></div>
+    </div>
 
-<section class="hero" id="hero">
-    <h1><img src="Areté_logo-removebg-preview.png" alt="Areté Galería de Arte en Vitrofusión en Apóstoles"></h1>
-    <p>La Excelencia en el Arte</p>
-    <a href="#productos" class="btn">Ver productos</a>
-</section>
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo"><img src="Areté_logo.png" alt="ARETÉ" style="height: 50px;"></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#productos" class="nav-link">Tienda</a></li>
+                <li><a href="#nosotros" class="nav-link">Sobre Nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-cart" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="toggle-menu" id="toggleMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-<section class="productos" id="productos">
-    <h2>Nuestros Productos</h2>
-    <div class="productos-grid" id="productos-grid"></div>
-</section>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1 class="hero-title">ARETÉ</h1>
+            <p class="hero-subtitle">Galería Premium de Arte en Vitrofusión</p>
+            <p style="color: var(--white); margin-bottom: 2.5rem; font-size: 1.1rem; opacity: 0.95;">Piezas únicas hechas a mano con pasión. Cada obra es una creación exclusiva que transforma espacios.</p>
+            <div class="hero-buttons">
+                <a href="#productos" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Ver Colección
+                </a>
+                <a href="#contacto" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Contactanos
+                </a>
+            </div>
+        </div>
+    </section>
 
-<section class="contacto">
-    <h2>¿Quienes somos?</h2>
-    <p>Una galería de Arte en Vitrofusion Ubicada en Apóstoles Misiones.
+    <!-- CATEGORIES -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <h2 class="section-title">Nuestras Categorías</h2>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+    </section>
 
-Excelencia, diseño y color. 
+    <!-- PRODUCTS -->
+    <section class="section" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="filters" id="filtersContainer"></div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
 
-Piezas únicas para uso o decoración de acuerdo al gusto o necesidad. Obras de arte, Productos para uso cotidiano, Piezas decorativas, Accesorios, Pequeñas Esculturas, Bijou y más.</p>
-</section>
-
-<section class="contacto">
-    <h2>Contactanos</h2>
-    <p style="margin:20px 0 30px;">
-        Si querés más información sobre nuestros productos o hacer un pedido personalizado,
-        escribinos directamente por WhatsApp.
-    </p>
-    <a href="https://wa.me/5493758567371" class="btn">Escribinos por WhatsApp</a>
-    <a href="https://www.instagram.com/arete.galeriadearte/" class="btn">Nuestro Instagram</a>
-    <a href="https://www.facebook.com/people/Aret%C3%A9/100077355066538/?locale=zh_CN#" class="btn">Nuestro Facebook</a>
-    <a href="https://wa.me/5493758502801?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20sus%20webs%20" class="btn"><img src="ChatGPT Image 11 feb 2026, 13_33_38.png" alt=""></a>
-
-</section>
-
-<script>
-const productos = [
- {nombre:"Llavero ",categoria:"Llaveros",imagen:"llaveros.jpg"},
- {nombre:"Llavero cruz",categoria:"Llaveros",imagen:"llavero cruz.jpg"},
-
- {nombre:"Movil osito",categoria:"Movil",imagen:"moviles osito.jpg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"mowiles.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"movilkes.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"mobiles.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"movilse.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"molvives.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"movwiles.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"mowiless.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"mowilkes3.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"moviles22.jpeg"},
- {nombre:"Moviles",categoria:"Movil",imagen:"moviles33.jpeg"},
-
- {nombre:"Mate mini esculturitas",categoria:"Mini esculturitas",imagen:"mate mini escultura.jpg"},
- {nombre:"Mate mini esculturitas",categoria:"Mini esculturitas",imagen:"mate mini escultutita.jpeg"},
- 
- {nombre:"Llavero personalizado",categoria:"Llaveros",imagen:"pili llavero.jpeg"},
-
-
- {nombre:"Aritos vitrofusión",categoria:"Bijou",imagen:"aros en vitrofusion.jpg"},
- {nombre:"Conjunto bijou",categoria:"Bijou",imagen:"conjuntos bijou.jpg"},
- {nombre:"Arito + anillo",categoria:"Bijou",imagen:"conjunto arito y anillo.jpg"},
- {nombre:"Bijou",categoria:"Bijou",imagen:"bijouuuu.jpeg"},
- {nombre:"Arito + anillo",categoria:"Bijou",imagen:"bijouclg.jpeg"},
-
-
-
- {nombre:"Plato redondo",categoria:"Platos",imagen:"plato redondo.jpg"},
- {nombre:"Plato cuadrado",categoria:"Platos",imagen:"plato matecito.jpg"},
- {nombre:"Plato Guembe",categoria:"Platos",imagen:"plato guembe.jpg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato1.jpeg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato2.jpeg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato3.jpeg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato4.jpeg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato5.jpeg"},
- {nombre:"Platos",categoria:"Platos",imagen:"img plato6.jpeg"},
-
-
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espiral.jpg"},
- {nombre:"Mate mini esculturita",categoria:"Mini esculturitas",imagen:"esculturitamate.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales1.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales2.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales3.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales4.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales5.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales6.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales7.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales8.jpeg"},
- {nombre:"Porta espiral",categoria:"Portadores",imagen:"porta espirales9.jpeg"},
-
-
- {nombre:"Bacha para baño",categoria:"Decoración",imagen:"bacha apra baño.jpg"},
- {nombre:"Fuente circular enrejada",categoria:"Fuente Y Posatorta",imagen:"fuente circular enrejada.jpg"},
- {nombre:"Centro de mesa",categoria:"Decoración",imagen:"centro de mesa.jpg"},
- {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada1.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada2.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada3.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada4.jpeg"},
- {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada5.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada6.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada7.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada8.jpeg"},
- {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada9.jpeg"},
- {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada10.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada11.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada12.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada13.jpeg"},
- {nombre:"Posatorta",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada14.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada15.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada16.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada17.jpeg"},
- {nombre:"Fuentes",categoria:"Fuente Y Posatorta",imagen:"fuente enrejada18.jpeg"},
-
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios1.jpeg"},
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios2.jpeg"},
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios3.jpeg"},
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios4.jpeg"},
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios5.jpeg"},
- {nombre:"Porta Sahumerios",categoria:"Porta Sahumerios",imagen:"porta sahumerios6.jpeg"},
-
-  {nombre:"Porta Maceta",categoria:"Diseños",imagen:"porta mecetas o fanal.jpg"},
-  {nombre:"Escarapelas",categoria:"Diseños",imagen:"escarapelas.jpg"},
-  {nombre:"Tutores",categoria:"Diseños",imagen:"padres.jpeg"},
-  {nombre:"Tutores",categoria:"Diseños",imagen:"tutores.jpeg"},
+    <!-- ABOUT -->
+    <section class="section" style="background: var(--white);" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Areté</h2>
+            <div class="about-grid">
+                <div>
+                    <p>Somos una galería de arte especializada en vitrofusión, ubicada en Apóstoles, Misiones. Creamos piezas únicas que combinan técnica, creatividad y pasión por el arte del vidrio.</p>
+                    <p>Cada obra es cuidadosamente elaborada, utilizando técnicas tradicionales y contemporáneas para crear piezas que transforman cualquier espacio en un ambiente único y sofisticado.</p>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
- 
+    <!-- CONTACT -->
+    <section class="section" style="background: var(--white);" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-grid">
+                <div>
+                    <h3 style="margin-bottom: 1rem;">¿Tienes alguna pregunta?</h3>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">Estamos aquí para ayudarte. Contáctanos por cualquier medio.</p>
+                    <div class="contact-cards">
+                        <a href="https://wa.me/5493764123456" target="_blank" class="contact-card">
+                            <i class="fab fa-whatsapp contact-icon"></i>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <span>+54 9 3764 123456</span>
+                            </div>
+                        </a>
+                        <a href="mailto:icgivana@gmail.com" class="contact-card">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>icgivana@gmail.com</span>
+                            </div>
+                        </a>
+                        <div class="contact-card">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <div>
+                                <strong>Ubicación</strong>
+                                <span>Apóstoles, Misiones, Argentina</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-];
+    <!-- CART OVERLAY -->
+    <div class="cart-overlay" id="cartOverlay"></div>
 
-const grid = document.getElementById("productos-grid");
-const categorias = {};
+    <!-- CART SIDEBAR -->
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-btn" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total" style="display: none;">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Consultar Disponibilidad
+            </button>
+        </div>
+    </aside>
 
-productos.forEach(p=>{
-    if(!categorias[p.categoria]) categorias[p.categoria]=[];
-    categorias[p.categoria].push(p);
-});
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>ARETÉ</h4>
+                    <p>Galería de arte en vitrofusión. Piezas únicas hechas a mano con pasión y dedicación.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Tienda</a></li>
+                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Apóstoles, Misiones, Argentina</p>
+                    <a href="https://wa.me/5493764123456">+54 9 3764 123456</a><br>
+                    <a href="mailto:icgivana@gmail.com">icgivana@gmail.com</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5493764123456" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/3758502801?text=Hola%20quiero%20informacion%20sobre%20tu%20trabajo" target="_blank"><img src="img%20ar.png" alt="Arete" style="height: 24px; width: 24px; border-radius: 50%; display: inline-block; vertical-align: middle;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ARETÉ Galería de Arte. Todos los derechos reservados. | icgivana@gmail.com</p>
+            </div>
+        </div>
+    </footer>
 
-Object.keys(categorias).forEach(cat=>{
-    const items = categorias[cat];
+    <script>
+        const app = {
+            cart: [],
+            products: [
+                { id: 1, nombre: "Llavero", categoria: "Llaveros", precio: 1500, imagen: "llaveros.jpg" },
+                { id: 2, nombre: "Llavero Cruz", categoria: "Llaveros", precio: 1800, imagen: "llavero%20cruz.jpg" },
+                { id: 3, nombre: "Pili Llavero", categoria: "Llaveros", precio: 1600, imagen: "pili%20llavero.jpeg" },
+                { id: 4, nombre: "Móvil Osito", categoria: "Móviles", precio: 3500, imagen: "moviles%20osito.jpg" },
+                { id: 5, nombre: "Móvil", categoria: "Móviles", precio: 3200, imagen: "mowiles.jpeg" },
+                { id: 6, nombre: "Móvil Decorativo", categoria: "Móviles", precio: 3200, imagen: "movilkes.jpeg" },
+                { id: 7, nombre: "Móvil Premium", categoria: "Móviles", precio: 3800, imagen: "moviles22.jpeg" },
+                { id: 8, nombre: "Móvil Deluxe", categoria: "Móviles", precio: 3600, imagen: "moviles33.jpeg" },
+                { id: 9, nombre: "Móvil Artesanal", categoria: "Móviles", precio: 3900, imagen: "movilse.jpeg" },
+                { id: 10, nombre: "Móvil Exclusivo", categoria: "Móviles", precio: 4100, imagen: "movwiles.jpeg" },
+                { id: 11, nombre: "Móvil Elite", categoria: "Móviles", precio: 3700, imagen: "mowiless.jpeg" },
+                { id: 12, nombre: "Móvil Premium Plus", categoria: "Móviles", precio: 4200, imagen: "mowilkes3.jpeg" },
+                { id: 13, nombre: "Mobiles Especial", categoria: "Móviles", precio: 3400, imagen: "mobiles.jpeg" },
+                { id: 14, nombre: "Molvives Artesanal", categoria: "Móviles", precio: 3300, imagen: "molvives.jpeg" },
+                { id: 15, nombre: "Mate Mini Escultura", categoria: "Mini Esculturitas", precio: 2800, imagen: "mate%20mini%20escultura.jpg" },
+                { id: 16, nombre: "Mate Mini Escultutita", categoria: "Mini Esculturitas", precio: 2700, imagen: "mate%20mini%20escultutita.jpeg" },
+                { id: 17, nombre: "Aritos Vitrofusión", categoria: "Bijou", precio: 2500, imagen: "aros%20en%20vitrofusion.jpg" },
+                { id: 18, nombre: "Bijou Clásico", categoria: "Bijou", precio: 3200, imagen: "bijouclg.jpeg" },
+                { id: 19, nombre: "Bijou Moderno", categoria: "Bijou", precio: 3100, imagen: "bijouuuu.jpeg" },
+                { id: 20, nombre: "Conjunto Arito y Anillo", categoria: "Bijou", precio: 4000, imagen: "conjunto%20arito%20y%20anillo.jpg" },
+                { id: 21, nombre: "Conjunto Bijou", categoria: "Bijou", precio: 4500, imagen: "conjuntos%20bijou.jpg" },
+                { id: 22, nombre: "Plato Redondo", categoria: "Platos", precio: 4200, imagen: "plato%20redondo.jpg" },
+                { id: 23, nombre: "Plato Matecito", categoria: "Platos", precio: 4500, imagen: "plato%20matecito.jpg" },
+                { id: 24, nombre: "Plato Guembe", categoria: "Platos", precio: 4800, imagen: "plato%20guembe.jpg" },
+                { id: 25, nombre: "Plato ", categoria: "Platos", precio: 4100, imagen: "img%20plato1.jpeg" },
+                { id: 26, nombre: "Plato ", categoria: "Platos", precio: 4300, imagen: "img%20plato2.jpeg" },
+                { id: 27, nombre: "Plato ", categoria: "Platos", precio: 4400, imagen: "img%20plato3.jpeg" },
+                { id: 28, nombre: "Plato ", categoria: "Platos", precio: 4150, imagen: "img%20plato4.jpeg" },
+                { id: 29, nombre: "Plato ", categoria: "Platos", precio: 4350, imagen: "img%20plato5.jpeg" },
+                { id: 30, nombre: "Plato ", categoria: "Platos", precio: 4450, imagen: "img%20plato6.jpeg" },
+                { id: 31, nombre: "Porta Sahumerios", categoria: "Portadores", precio: 2500, imagen: "porta%20sahumerios1.jpeg" },
+                { id: 32, nombre: "Porta Sahumerios ", categoria: "Portadores", precio: 2600, imagen: "porta%20sahumerios2.jpeg" },
+                { id: 33, nombre: "Porta Sahumerios ", categoria: "Portadores", precio: 2550, imagen: "porta%20sahumerios3.jpeg" },
+                { id: 34, nombre: "Porta Sahumerios ", categoria: "Portadores", precio: 2700, imagen: "porta%20sahumerios4.jpeg" },
+                { id: 35, nombre: "Porta Sahumerios ", categoria: "Portadores", precio: 2650, imagen: "porta%20sahumerios5.jpeg" },
+                { id: 36, nombre: "Porta Sahumerios ", categoria: "Portadores", precio: 2750, imagen: "porta%20sahumerios6.jpeg" },
+                { id: 37, nombre: "Porta Espiral", categoria: "Portadores", precio: 3500, imagen: "porta%20espiral.jpg" },
+                { id: 38, nombre: "Porta Sahumerios Decorativo", categoria: "Portadores", precio: 3600, imagen: "porta%20espirales1.jpeg" },
+                { id: 39, nombre: "Porta Sahumerios Elegante", categoria: "Portadores", precio: 3550, imagen: "porta%20espirales2.jpeg" },
+                { id: 40, nombre: "Porta Sahumerios Deluxe", categoria: "Portadores", precio: 3700, imagen: "porta%20espirales3.jpeg" },
+                { id: 41, nombre: "Porta Sahumerios Premium", categoria: "Portadores", precio: 3650, imagen: "porta%20espirales4.jpeg" },
+                { id: 42, nombre: "Porta Sahumerios Artesanal", categoria: "Portadores", precio: 3750, imagen: "porta%20espirales5.jpeg" },
+                { id: 43, nombre: "Porta Sahumerios Exclusivo", categoria: "Portadores", precio: 3800, imagen: "porta%20espirales6.jpeg" },
+                { id: 44, nombre: "Porta Sahumerios Elite", categoria: "Portadores", precio: 3850, imagen: "porta%20espirales7.jpeg" },
+                { id: 45, nombre: "Porta Sahumerios Premium Plus", categoria: "Portadores", precio: 3900, imagen: "porta%20espirales8.jpeg" },
+                { id: 46, nombre: "Porta Sahumerios Especial", categoria: "Portadores", precio: 3950, imagen: "porta%20espirales9.jpeg" },
+                { id: 47, nombre: "Porta Macetas o Fanal", categoria: "Portadores", precio: 5500, imagen: "porta%20mecetas%20o%20fanal.jpg" },
+                { id: 48, nombre: "Bacha Baño", categoria: "Decoración", precio: 8500, imagen: "bacha%20apra%20baño.jpg" },
+                { id: 49, nombre: "Centro de Mesa", categoria: "Decoración", precio: 4500, imagen: "centro%20de%20mesa.jpg" },
+                { id: 50, nombre: "Escarapelas", categoria: "Decoración", precio: 1200, imagen: "escarapelas.jpg" },
+                { id: 51, nombre: "Tutores", categoria: "Decoración", precio: 3800, imagen: "padres.jpeg" },
+                { id: 52, nombre: "Tutores", categoria: "Decoración", precio: 2200, imagen: "tutores.jpeg" },
+                { id: 53, nombre: "Fuente Circular Enrejada", categoria: "Fuentes", precio: 5500, imagen: "fuente%20circular%20enrejada.jpg" },
+                { id: 54, nombre: "Fuente", categoria: "Fuentes", precio: 5600, imagen: "fuente%20enrejada1.jpeg" },
+                { id: 55, nombre: "Fuente", categoria: "Fuentes", precio: 5550, imagen: "fuente%20enrejada2.jpeg" },
+                { id: 56, nombre: "Fuente", categoria: "Fuentes", precio: 5700, imagen: "fuente%20enrejada3.jpeg" },
+                { id: 57, nombre: "Fuente", categoria: "Fuentes", precio: 5650, imagen: "fuente%20enrejada4.jpeg" },
+                { id: 58, nombre: "Fuente", categoria: "Fuentes", precio: 5750, imagen: "fuente%20enrejada5.jpeg" },
+                { id: 59, nombre: "Fuente", categoria: "Fuentes", precio: 5800, imagen: "fuente%20enrejada6.jpeg" },
+                { id: 60, nombre: "Fuente", categoria: "Fuentes", precio: 5850, imagen: "fuente%20enrejada7.jpeg" },
+                { id: 61, nombre: "Fuente", categoria: "Fuentes", precio: 5900, imagen: "fuente%20enrejada8.jpeg" },
+                { id: 62, nombre: "Fuente", categoria: "Fuentes", precio: 5950, imagen: "fuente%20enrejada9.jpeg" },
+                { id: 63, nombre: "Fuente", categoria: "Fuentes", precio: 6000, imagen: "fuente%20enrejada10.jpeg" },
+                { id: 64, nombre: "Fuente", categoria: "Fuentes", precio: 6050, imagen: "fuente%20enrejada11.jpeg" },
+                { id: 65, nombre: "Fuente", categoria: "Fuentes", precio: 6100, imagen: "fuente%20enrejada12.jpeg" },
+                { id: 66, nombre: "Fuente", categoria: "Fuentes", precio: 6150, imagen: "fuente%20enrejada13.jpeg" },
+                { id: 67, nombre: "Fuente", categoria: "Fuentes", precio: 6200, imagen: "fuente%20enrejada14.jpeg" },
+                { id: 68, nombre: "Fuente", categoria: "Fuentes", precio: 6250, imagen: "fuente%20enrejada15.jpeg" },
+                { id: 69, nombre: "Fuente", categoria: "Fuentes", precio: 6300, imagen: "fuente%20enrejada16.jpeg" },
+                { id: 70, nombre: "Fuente", categoria: "Fuentes", precio: 6350, imagen: "fuente%20enrejada17.jpeg" },
+                { id: 71, nombre: "Fuente", categoria: "Fuentes", precio: 6400, imagen: "fuente%20enrejada18.jpeg" }
+            ],
+            categories: {}
+        };
 
-    items.forEach((p,i)=>{
-        const div=document.createElement("div");
-        div.className="producto"+(i>0?" hidden":"");
-        div.dataset.cat=cat;
-        div.innerHTML=`
-            <img src="${p.imagen}">
-            <div class="producto-content">
-                <h3>${p.nombre}</h3>
-                <button class="contactar-btn" data-nombre="${p.nombre}" data-categoria="${p.categoria}">Contactar</button>
-            </div>`;
-        grid.appendChild(div);
-    });
+        // INITIALIZE
+        function init() {
+            organizeCategories();
+            renderCategories();
+            renderFilters();
+            renderProducts();
+            loadCart();
+            setTimeout(() => document.getElementById('loading').classList.add('hidden'), 1000);
+        }
 
-    const btn=document.createElement("button");
-    btn.className="categoria-btn";
-    btn.textContent=`Ver más ${cat}`;
-    btn.onclick=()=>{
-        const prods=[...document.querySelectorAll(`[data-cat='${cat}']`)];
-        const hidden=prods.some(p=>p.classList.contains("hidden"));
-        prods.forEach((p,i)=>{if(i>0)p.classList.toggle("hidden",!hidden)});
-        btn.textContent=hidden?`Ver menos ${cat}`:`Ver más ${cat}`;
-    };
-    grid.appendChild(btn);
-});
+        function organizeCategories() {
+            app.categories = {};
+            app.products.forEach(p => {
+                if (!app.categories[p.categoria]) app.categories[p.categoria] = [];
+                app.categories[p.categoria].push(p);
+            });
+        }
 
-grid.addEventListener("click",e=>{
-    if(e.target.classList.contains("contactar-btn")){
-        const nombre = e.target.dataset.nombre;
-        const categoria = e.target.dataset.categoria;
-        const mensaje = `Hola! Quiero información sobre ${nombre} (${categoria})`;
-        window.open(
-            `https://wa.me/5493758567371?text=${encodeURIComponent(mensaje)}`,
-            "_blank"
-        );
-    }
-});
-const images = document.querySelectorAll("img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const closeBtn = document.querySelector(".close");
+        // CATEGORIES
+        function renderCategories() {
+            const icons = {
+                "Llaveros": "fa-key", "Móviles": "fa-wind", "Bijou": "fa-ring",
+                "Platos": "fa-plate-wheat", "Portadores": "fa-box", "Decoración": "fa-home",
+                "Mini Esculturitas": "fa-cube", "Fuentes": "fa-bowl-food"
+            };
+            document.getElementById('categoriesGrid').innerHTML = Object.entries(app.categories)
+                .map(([name, prods]) => `
+                    <div class="category-card" onclick="filterCat('${name}', this)">
+                        <div class="category-icon"><i class="fas ${icons[name] || 'fa-palette'}"></i></div>
+                        <div class="category-name">${name}</div>
+                        <div class="category-count">${prods.length} productos</div>
+                    </div>
+                `).join('');
+        }
 
-images.forEach(img => {
-    img.addEventListener("click", () => {
-        lightbox.style.display = "flex";
-        lightboxImg.src = img.src;
-    });
-});
+        // FILTERS
+        function renderFilters() {
+            let html = `<button class="filter-btn active" onclick="showAll(this)">Todos</button>`;
+            Object.keys(app.categories).forEach(cat => {
+                html += `<button class="filter-btn" onclick="filterCat('${cat}', this)">${cat}</button>`;
+            });
+            document.getElementById('filtersContainer').innerHTML = html;
+        }
 
-closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
+        function showAll(button) {
+            renderProducts(app.products);
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (button) button.classList.add('active');
+        }
 
-lightbox.addEventListener("click", (e) => {
-    if (e.target !== lightboxImg) {
-        lightbox.style.display = "none";
-    }
-});
-</script>
+        function filterCat(cat, button) {
+            renderProducts(app.categories[cat] || []);
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (button) button.classList.add('active');
+        }
 
+        // PRODUCTS
+        function renderProducts(prods = app.products) {
+            document.getElementById('productsGrid').innerHTML = prods.map(p => {
+                const img = p.imagen.replace(/ /g, '%20').replace(/ñ/g, '%C3%B1');
+                return `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${img}" alt="${p.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x250'">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">${p.categoria}</div>
+                            <h3 class="product-name">${p.nombre}</h3>
+                            <div class="product-footer">
+                                <button class="add-cart-btn" onclick="addCart(${p.id})" style="width: 100%; justify-content: center;">
+                                    <i class="fas fa-cart-plus"></i> Consultar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // CART
+        function addCart(id) {
+            const p = app.products.find(x => x.id === id);
+            const existing = app.cart.find(x => x.id === id);
+            if (existing) existing.qty++; else app.cart.push({...p, qty: 1});
+            updateCart();
+            saveCart();
+            notify('Producto agregado al carrito ✓');
+        }
+
+        function removeCart(id) {
+            app.cart = app.cart.filter(x => x.id !== id);
+            updateCart();
+            saveCart();
+        }
+
+        function updateQty(id, q) {
+            const item = app.cart.find(x => x.id === id);
+            if (!item) return;
+            if (q <= 0) removeCart(id); else { item.qty = q; updateCart(); saveCart(); }
+        }
+
+        function updateCart() {
+            const count = app.cart.reduce((s, i) => s + (Number(i.qty) || 0), 0);
+            document.getElementById('cartBadge').textContent = count;
+            
+            if (!app.cart.length) {
+                document.getElementById('cartItems').innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Tu carrito está vacío</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('cartItems').innerHTML = app.cart.map(i => {
+                    const img = i.imagen.replace(/ /g, '%20').replace(/ñ/g, '%C3%B1');
+                    const precio = Number(i.precio) || 0;
+                    const qty = Number(i.qty) || 1;
+                    const subtotal = precio * qty;
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-img">
+                                <img src="${img}" alt="${i.nombre}" onerror="this.src='https://via.placeholder.com/80x80'">
+                            </div>
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${i.nombre}</div>
+                                <div class="cart-item-category">${i.categoria}</div>
+                                <div class="qty-control">
+                                    <button class="qty-btn" onclick="updateQty(${i.id}, ${qty - 1})">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="qty-display">${qty}</span>
+                                    <button class="qty-btn" onclick="updateQty(${i.id}, ${qty + 1})">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="remove-btn" onclick="removeCart(${i.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const total = app.cart.reduce((s, i) => s + ((Number(i.precio) || 0) * (Number(i.qty) || 0)), 0);
+            document.getElementById('cartTotal').textContent = `$${isNaN(total) ? '0' : total.toLocaleString()}`;
+        }
+
+        function saveCart() {
+            localStorage.setItem('arete-cart', JSON.stringify(app.cart));
+        }
+
+        function loadCart() {
+            const saved = localStorage.getItem('arete-cart');
+            if (saved) {
+                app.cart = JSON.parse(saved);
+                app.cart = app.cart.map(item => ({
+                    ...item,
+                    precio: Number(item.precio) || 0,
+                    qty: Number(item.qty) || 1
+                }));
+                updateCart();
+            }
+        }
+
+        // CHECKOUT
+        function checkout() {
+            if (!app.cart.length) { notify('Carrito vacío'); return; }
+            const msg = app.cart.map(i => `${i.nombre} x${i.qty}`).join('%0a');
+            const text = `Hola, quiero consultar la disponibilidad y precio de estos productos:%0a%0a${msg}%0a%0a¿Cuáles tienen stock disponible y cuáles son los precios actualizados?`;
+            window.open(`https://wa.me/5493764123456?text=${text}`, '_blank');
+            app.cart = [];
+            saveCart();
+            updateCart();
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+            notify('Consulta enviada a WhatsApp ✓');
+        }
+
+        // FORMS
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+
+            document.getElementById('contactForm').addEventListener('submit', e => {
+                e.preventDefault();
+                const form = new FormData(e.target);
+                const text = `Nombre: ${form.get('name')}%0aEmail: ${form.get('email')}%0aTeléfono: ${form.get('phone')}%0aMensaje: ${form.get('message')}`;
+                window.open(`https://wa.me/5493764123456?text=${text}`, '_blank');
+                e.target.reset();
+                notify('Mensaje enviado a WhatsApp ✓');
+            });
+
+
+
+            document.getElementById('cartBtn').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.toggle('open');
+                document.getElementById('cartOverlay').classList.toggle('open');
+            });
+
+            document.getElementById('closeCart').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('open');
+            });
+
+            document.getElementById('cartOverlay').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('open');
+            });
+
+            document.getElementById('checkoutBtn').addEventListener('click', checkout);
+
+            document.getElementById('toggleMenu').addEventListener('click', () => {
+                document.getElementById('navMenu').classList.toggle('open');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navMenu').classList.remove('open');
+                });
+            });
+        });
+
+        function notify(msg) {
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.textContent = msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 3000);
+        }
+    </script>
 </body>
 </html>
