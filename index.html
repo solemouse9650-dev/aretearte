@@ -1100,7 +1100,7 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1 class="hero-title">ARETÉ</h1>
-            <p class="hero-subtitle">Galería Premium de Arte en Vitrofusión</p>
+            <p class="hero-subtitle">Galería de Arte en Vitrofusión</p>
             <p style="color: var(--white); margin-bottom: 2.5rem; font-size: 1.1rem; opacity: 0.95;">Piezas únicas hechas a mano con pasión. Cada obra es una creación exclusiva que transforma espacios.</p>
             <div class="hero-buttons">
                 <a href="#productos" class="btn btn-primary">
@@ -1156,11 +1156,11 @@
                     <h3 style="margin-bottom: 1rem;">¿Tienes alguna pregunta?</h3>
                     <p style="color: var(--text-light); margin-bottom: 2rem;">Estamos aquí para ayudarte. Contáctanos por cualquier medio.</p>
                     <div class="contact-cards">
-                        <a href="https://wa.me/5493764123456" target="_blank" class="contact-card">
+                        <a href="https://wa.me/5493758567371" target="_blank" class="contact-card">
                             <i class="fab fa-whatsapp contact-icon"></i>
                             <div>
                                 <strong>WhatsApp</strong>
-                                <span>+54 9 3764 123456</span>
+                                <span>+54 9 3758 567371</span>
                             </div>
                         </a>
                         <a href="mailto:icgivana@gmail.com" class="contact-card">
@@ -1252,15 +1252,15 @@
                 <div class="footer-section">
                     <h4>Contacto</h4>
                     <p>Apóstoles, Misiones, Argentina</p>
-                    <a href="https://wa.me/5493764123456">+54 9 3764 123456</a><br>
+                    <a href="https://wa.me/5493758567371">+54 9 3758</a><br>
                     <a href="mailto:icgivana@gmail.com">icgivana@gmail.com</a>
                 </div>
                 <div class="footer-section">
                     <h4>Síguenos</h4>
                     <div class="social-links">
-                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/5493764123456" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/arete.galeriadearte/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5493758567371" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/p/Aret%C3%A9-100077355066538/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://wa.me/3758502801?text=Hola%20quiero%20informacion%20sobre%20tu%20trabajo" target="_blank"><img src="img%20ar.png" alt="Arete" style="height: 24px; width: 24px; border-radius: 50%; display: inline-block; vertical-align: middle;"></a>
                     </div>
                 </div>
@@ -1520,7 +1520,7 @@
             if (!app.cart.length) { notify('Carrito vacío'); return; }
             const msg = app.cart.map(i => `${i.nombre} x${i.qty}`).join('%0a');
             const text = `Hola, quiero consultar la disponibilidad y precio de estos productos:%0a%0a${msg}%0a%0a¿Cuáles tienen stock disponible y cuáles son los precios actualizados?`;
-            window.open(`https://wa.me/5493764123456?text=${text}`, '_blank');
+            window.open(`https://wa.me/5493758567371?text=${text}`, '_blank');
             app.cart = [];
             saveCart();
             updateCart();
@@ -1537,7 +1537,7 @@
                 e.preventDefault();
                 const form = new FormData(e.target);
                 const text = `Nombre: ${form.get('name')}%0aEmail: ${form.get('email')}%0aTeléfono: ${form.get('phone')}%0aMensaje: ${form.get('message')}`;
-                window.open(`https://wa.me/5493764123456?text=${text}`, '_blank');
+                window.open(`https://wa.me/5493758567371?text=${text}`, '_blank');
                 e.target.reset();
                 notify('Mensaje enviado a WhatsApp ✓');
             });
