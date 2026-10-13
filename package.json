@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:emulator": "vite --mode emulator",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

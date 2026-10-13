@@ -1,7 +1,7 @@
 import { initLayout, errorBox } from '../layout.js';
 import { getCategories, getProducts } from '../data.js';
 import { productCard, skeletonCards } from '../card.js';
-import { $, $$, h, safeImg, waLink } from '../dom.js';
+import { $, $$, h, imgSrc, productAlt, waLink } from '../dom.js';
 
 const site = await initLayout('inicio');
 
@@ -25,13 +25,13 @@ try {
   // Categorías con conteo real y foto de una pieza de la categoría
   catGrid.replaceChildren(...categories.map((c) => {
     const items = products.filter((p) => p.categoryId === c.id);
-    const sample = items.find((p) => p.featured && safeImg(p.cover)) ?? items.find((p) => safeImg(p.cover));
+    const sample = items.find((p) => p.featured && imgSrc(p.cover)) ?? items.find((p) => imgSrc(p.cover));
     return h('a', {
       href: `/tienda.html?cat=${encodeURIComponent(c.id)}`,
       class: 'group flex flex-col justify-between rounded-xl bg-surface-container-lowest p-space-md shadow-sm transition-all hover:shadow-md',
     }, [
       h('div', { class: 'relative mb-space-sm aspect-square w-full overflow-hidden rounded-lg bg-surface-container' }, [
-        sample ? h('img', { src: sample.cover, alt: c.name, loading: 'lazy', class: 'h-full w-full object-cover transition-transform duration-500 group-hover:scale-105' }) : null,
+        sample ? h('img', { src: imgSrc(sample.cover), alt: `${c.name} en vitrofusión: ${productAlt(sample)}`, loading: 'lazy', class: 'h-full w-full object-cover transition-transform duration-500 group-hover:scale-105' }) : null,
         h('span', { class: 'absolute top-2 left-2 rounded bg-surface/90 px-space-xs py-0.5 text-label-tag text-on-surface', text: `${items.length} ${items.length === 1 ? 'obra' : 'obras'}` }),
       ]),
       h('div', {}, [

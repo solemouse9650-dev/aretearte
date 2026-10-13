@@ -1,6 +1,6 @@
 import { addToCart } from './cart.js';
 import {
-  AVAILABILITY, formatPrice, h, icon, productUrl, safeImg, waLink,
+  AVAILABILITY, formatPrice, h, icon, imgSrc, productAlt, productUrl, waLink,
 } from './dom.js';
 
 const SHORT = { en_taller: 'En Taller', unica: 'Pieza Única', pedido: 'A Pedido' };
@@ -9,7 +9,7 @@ const SHORT = { en_taller: 'En Taller', unica: 'Pieza Única', pedido: 'A Pedido
 export function productCard(p, { site, categoryName = '', compact = false } = {}) {
   const url = productUrl(p);
   const badge = (Array.isArray(p.badges) && p.badges[0]) || SHORT[p.availability] || 'Hecho a mano';
-  const cover = safeImg(p.cover);
+  const cover = imgSrc(p.cover);
   const msg = `Hola ${site?.artistName || 'Ivana'}, me interesa consultar por la obra: ${p.name} — ${location.origin}${url}`;
 
   return h('article', {
@@ -18,7 +18,7 @@ export function productCard(p, { site, categoryName = '', compact = false } = {}
   }, [
     h('a', { href: url, class: 'relative block aspect-square w-full overflow-hidden bg-surface-container-highest', 'aria-label': p.name }, [
       cover
-        ? h('img', { src: cover, alt: p.name, loading: 'lazy', decoding: 'async', class: 'h-full w-full object-cover transition-transform duration-500 group-hover:scale-105' })
+        ? h('img', { src: cover, alt: productAlt(p), loading: 'lazy', decoding: 'async', class: 'h-full w-full object-cover transition-transform duration-500 group-hover:scale-105' })
         : h('span', { class: 'flex h-full items-center justify-center text-outline' }, [icon('photo_camera', 'text-[40px]')]),
       h('span', { class: 'absolute top-3 left-3 rounded-md bg-surface-container-lowest/90 px-space-sm py-1 text-label-tag tracking-wider text-on-surface uppercase backdrop-blur-md', text: badge }),
       p.featured ? h('span', { class: 'absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-lowest/80 text-primary backdrop-blur-md', title: 'Obra destacada' }, [icon('auto_awesome', 'text-[18px]')]) : null,

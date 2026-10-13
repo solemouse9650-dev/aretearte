@@ -15,7 +15,7 @@ export function h(tag, attrs = {}, children = []) {
       const safe = safeHref(v);
       if (safe) el.setAttribute('href', safe);
     } else if (k === 'src') {
-      const safe = safeImg(v) ?? (typeof v === 'string' && v.startsWith('/') ? v : undefined);
+      const safe = safeImg(v) ?? (typeof v === 'string' && v.startsWith('/') && !v.startsWith('//') ? v : undefined);
       if (safe) el.setAttribute('src', safe);
     } else el.setAttribute(k, String(v));
   }
@@ -30,6 +30,13 @@ export function icon(name, cls = '') {
   return h('span', { class: `material-symbols-outlined ${cls}`, 'aria-hidden': 'true', text: isIcon(name) || UI.has(name) ? name : 'auto_awesome' });
 }
 const UI = new Set(['chat', 'east', 'arrow_forward', 'check_circle', 'expand_more', 'local_mall', 'add', 'remove', 'delete', 'zoom_in', 'close', 'chevron_left', 'chevron_right']);
+
+/** Imagen apta para mostrar: archivo estático propio (/img/...) o WebP embebido. */
+export function imgSrc(src) {
+  if (typeof src !== 'string') return undefined;
+  if (/^\/img\/(obras|sitio)\/[a-z0-9-]+\.webp$/.test(src)) return src;
+  return safeImg(src);
+}
 
 export function safeImg(src) {
   return typeof src === 'string' && /^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(src) ? src : undefined;
@@ -65,8 +72,16 @@ export function waLink(site, text) {
   return text ? `${base}?text=${encodeURIComponent(text)}` : base;
 }
 
+/** URL de la obra: página propia /obra/<id>/ (generada para buscadores). */
 export function productUrl(p) {
-  return `/producto.html?id=${encodeURIComponent(p.id)}`;
+  return import.meta.env.DEV
+    ? `/producto.html?id=${encodeURIComponent(p.id)}`
+    : `/obra/${encodeURIComponent(p.id)}/`;
+}
+
+/** Texto alternativo descriptivo para fotos de obras. */
+export function productAlt(p, extra = '') {
+  return `${p.name}${extra}, pieza de vitrofusión hecha a mano por Areté en Apóstoles, Misiones`;
 }
 
 export const AVAILABILITY = {

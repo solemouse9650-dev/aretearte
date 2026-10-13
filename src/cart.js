@@ -1,7 +1,7 @@
 // "Bolsa de consulta": lista de piezas guardada en el navegador que se envía
 // por WhatsApp. No es un carrito de compra ni guarda datos personales.
 import { getProducts } from './data.js';
-import { $, h, icon, productUrl, safeImg, waLink } from './dom.js';
+import { $, h, icon, imgSrc, productUrl, waLink } from './dom.js';
 import { lockScroll } from './smooth.js';
 
 const KEY = 'arete-cart';
@@ -72,7 +72,7 @@ async function render() {
     const set = (qty) => write(qty <= 0 ? read().filter((x) => x.id !== it.id) : read().map((x) => (x.id === it.id ? { ...x, qty } : x)));
     return h('li', { class: 'flex items-center gap-space-md rounded-xl bg-surface-container-low p-space-sm' }, [
       h('a', { href: productUrl(it), class: 'h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-surface-container' }, [
-        safeImg(p?.cover) ? h('img', { src: p.cover, alt: '', class: 'h-full w-full object-cover' }) : null,
+        imgSrc(p?.cover) ? h('img', { src: imgSrc(p.cover), alt: '', class: 'h-full w-full object-cover' }) : null,
       ]),
       h('div', { class: 'min-w-0 flex-1' }, [
         h('a', { href: productUrl(it), class: 'line-clamp-2 font-display text-[17px] leading-tight hover:text-primary', text: p?.name ?? it.name }),

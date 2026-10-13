@@ -1,6 +1,6 @@
 import './styles.css';
 import { getSite, getMedia } from './data.js';
-import { $, $$, h, icon, safeHttps, safeImg, waLink } from './dom.js';
+import { $, $$, h, icon, imgSrc, safeHttps, waLink } from './dom.js';
 import { initCart } from './cart.js';
 import { initSmoothScroll } from './smooth.js';
 
@@ -47,9 +47,9 @@ export async function applyMedia() {
     const media = await getMedia();
     for (const el of els) {
       const m = media[el.dataset.media];
-      const src = safeImg(m?.data);
+      const src = imgSrc(m?.data);
       if (!src) continue;
-      el.src = src;
+      if (el.getAttribute('src') !== src) el.src = src;
       if (m.alt) el.alt = m.alt;
       el.classList.remove('opacity-0');
     }

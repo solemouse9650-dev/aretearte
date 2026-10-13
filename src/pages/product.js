@@ -7,11 +7,13 @@ import { addToCart } from '../cart.js';
 import { renderFaqs } from '../faq.js';
 import { lockScroll } from '../smooth.js';
 import {
-  $, AVAILABILITY, formatPrice, h, icon, safeImg, waLink,
+  $, AVAILABILITY, formatPrice, h, icon, imgSrc, productAlt, productUrl, waLink,
 } from '../dom.js';
 
 const site = await initLayout('tienda');
-const id = new URLSearchParams(location.search).get('id') ?? '';
+// /obra/<id>/ (página generada) o /producto.html?id=<id>
+const id = /^\/obra\/([a-z0-9-]+)\/?$/.exec(location.pathname)?.[1]
+  ?? new URLSearchParams(location.search).get('id') ?? '';
 
 function notFound() {
   $('#product-view').classList.add('hidden');
@@ -29,16 +31,17 @@ if (!product) {
   notFound();
 } else {
   const p = product;
-  const url = `${location.origin}/producto.html?id=${encodeURIComponent(p.id)}`;
+  const url = `${location.origin}${productUrl(p)}`;
   const categories = await getCategories().catch(() => []);
   const cat = categories.find((c) => c.id === p.categoryId);
 
   // SEO básico
-  document.title = `${p.name} · Areté Vitrofusión`;
+  document.title = `${p.name} · Vitrofusión artesanal | Areté`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', (p.shortDescription || p.name).slice(0, 160));
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', p.name);
-  const canonical = h('link', { rel: 'canonical', href: url });
-  document.head.append(canonical);
+  if (!document.querySelector('link[rel="canonical"]')) {
+    document.head.append(h('link', { rel: 'canonical', href: `https://aretearte.com/obra/${encodeURIComponent(p.id)}/` }));
+  }
 
   // Migas, título y textos
   $('#bc-name').textContent = p.name;
@@ -95,11 +98,12 @@ if (!product) {
   let current = 0;
   const show = (i) => {
     current = (i + images.length) % images.length;
-    const src = safeImg(images[current]?.data);
+    const src = imgSrc(images[current]?.data);
     if (!src) return;
-    main.style.opacity = '0.4';
+    if (main.getAttribute('src') !== src) main.style.opacity = '0.4';
     main.src = src;
-    main.alt = `${p.name} — foto ${current + 1}`;
+    main.alt = productAlt(p, current ? ` (foto ${current + 1})` : '');
+    if (main.complete) main.style.opacity = '1';
     main.onload = () => { main.style.opacity = '1'; main.classList.remove('skeleton'); };
     [...$('#thumbs').children].forEach((t, j) => {
       t.classList.toggle('ring-2', j === current);
@@ -111,23 +115,23 @@ if (!product) {
   };
 
   // Mientras cargan las fotos grandes, se muestra la portada.
-  if (safeImg(p.cover)) {
-    main.src = p.cover;
-    main.alt = p.name;
+  if (imgSrc(p.cover) && !main.getAttribute('src')) {
+    main.src = imgSrc(p.cover);
+    main.alt = productAlt(p);
     main.classList.remove('skeleton');
   }
   try {
-    images = (await getProductImages(p.id)).filter((im) => safeImg(im.data));
+    images = (await getProductImages(p.id)).filter((im) => imgSrc(im.data));
   } catch {
     images = [];
   }
-  if (!images.length && safeImg(p.cover)) images = [{ data: p.cover }];
+  if (!images.length && imgSrc(p.cover)) images = [{ data: p.cover }];
   if (images.length > 1) {
     $('#thumbs').replaceChildren(...images.map((im, i) => h('button', {
       type: 'button', 'aria-label': `Ver foto ${i + 1}`,
       class: 'group relative aspect-square overflow-hidden rounded-lg bg-surface-container-low opacity-70 transition-all hover:opacity-100',
       onclick: () => show(i),
-    }, [h('img', { src: im.data, alt: '', class: 'h-full w-full object-cover', loading: 'lazy' })])));
+    }, [h('img', { src: imgSrc(im.data), alt: productAlt(p, ` (foto ${i + 1})`), class: 'h-full w-full object-cover', loading: 'lazy' })])));
   }
   if (images.length) show(0);
 
@@ -135,7 +139,7 @@ if (!product) {
   const modal = $('#zoom-modal');
   const openZoom = () => {
     if (!images.length) return;
-    $('#zoom-img').src = safeImg(images[current].data);
+    $('#zoom-img').src = imgSrc(images[current].data);
     $('#zoom-img').alt = main.alt;
     modal.classList.replace('hidden', 'flex');
     lockScroll(true);

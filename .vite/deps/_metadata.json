@@ -1,0 +1,37 @@
+{
+  "hash": "1ceae947",
+  "configHash": "c7de9c2f",
+  "lockfileHash": "bb3897d2",
+  "browserHash": "c879dd12",
+  "optimized": {
+    "firebase/firestore/lite": {
+      "src": "../../node_modules/firebase/firestore/lite/dist/esm/index.esm.js",
+      "file": "firebase_firestore_lite.js",
+      "fileHash": "da73ca57",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "56acc032",
+      "needsInterop": false
+    },
+    "firebase/app-check": {
+      "src": "../../node_modules/firebase/app-check/dist/esm/index.esm.js",
+      "file": "firebase_app-check.js",
+      "fileHash": "773521a3",
+      "needsInterop": false
+    },
+    "lenis": {
+      "src": "../../node_modules/lenis/dist/lenis.mjs",
+      "file": "lenis.js",
+      "fileHash": "82aa15bd",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-VZ4MIDMU": {
+      "file": "chunk-VZ4MIDMU.js"
+    }
+  }
+}

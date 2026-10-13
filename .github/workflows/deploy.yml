@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Regenera fotos con nombre, páginas de obras y sitemap con lo último del panel
+    # (10:00 y 22:00 UTC = 7:00 y 19:00 en Argentina)
+    - cron: "0 10,22 * * *"
 
 permissions:
   contents: read
