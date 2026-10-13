@@ -1,0 +1,37 @@
+<a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded focus:bg-primary focus:px-3 focus:py-2 focus:text-on-primary">Saltar al contenido</a>
+<header class="fixed top-0 right-0 left-0 z-50 bg-surface/90 shadow-[0_1px_8px_rgba(44,34,28,0.05)] backdrop-blur-md">
+  <div class="flex h-20 w-full items-center justify-between gap-space-md px-gutter-mobile lg:px-margin">
+    <a class="flex shrink-0 items-center gap-space-sm" href="/" aria-label="Areté, ir al inicio">
+      <img alt="Areté · Arte y Diseño" class="h-12 w-auto object-contain" src="/logo.png" width="135" height="56" />
+    </a>
+    <nav class="hidden items-center gap-space-lg xl:flex" aria-label="Principal">
+      <a data-nav="inicio" class="nav-link rounded-lg px-space-sm py-space-xs text-label-lg text-on-surface-variant transition-colors hover:text-on-surface" href="/">Inicio</a>
+      <a data-nav="tienda" class="nav-link rounded-lg px-space-sm py-space-xs text-label-lg text-on-surface-variant transition-colors hover:text-on-surface" href="/tienda.html">Colección &amp; Tienda</a>
+      <a data-nav="nosotros" class="nav-link rounded-lg px-space-sm py-space-xs text-label-lg text-on-surface-variant transition-colors hover:text-on-surface" href="/#nosotros">Sobre el Taller</a>
+      <a data-nav="faq" class="nav-link rounded-lg px-space-sm py-space-xs text-label-lg text-on-surface-variant transition-colors hover:text-on-surface" href="/tienda.html#preguntas">Preguntas Frecuentes</a>
+      <a data-nav="contacto" class="nav-link rounded-lg px-space-sm py-space-xs text-label-lg text-on-surface-variant transition-colors hover:text-on-surface" href="/#contacto">Contacto</a>
+    </nav>
+    <div class="flex shrink-0 items-center gap-space-sm">
+      <a data-wa class="hidden items-center gap-space-xs rounded-lg bg-primary px-space-md py-space-sm text-label-lg text-on-primary transition-colors hover:bg-primary-container md:inline-flex" href="https://wa.me/5493758567371" rel="noopener noreferrer" target="_blank">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span><span>Consultar por WhatsApp</span>
+      </a>
+      <button id="cart-open" type="button" aria-label="Abrir bolsa de consulta" class="relative flex items-center justify-center rounded-full p-space-sm text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface">
+        <span class="material-symbols-outlined text-[24px]" aria-hidden="true">local_mall</span>
+        <span id="cart-count" class="absolute top-0.5 right-0.5 hidden h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 text-label-tag text-on-primary">0</span>
+      </button>
+      <button id="menu-open" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="flex items-center justify-center rounded-full p-space-sm text-on-surface transition-colors hover:bg-surface-container-high xl:hidden">
+        <span class="material-symbols-outlined text-[26px]" aria-hidden="true">menu</span>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-menu" class="hidden border-t border-surface-container-high bg-surface px-gutter-mobile pb-space-md xl:hidden" aria-label="Menú móvil">
+    <a class="block border-b border-surface-container-high py-3 text-label-lg" href="/">Inicio</a>
+    <a class="block border-b border-surface-container-high py-3 text-label-lg" href="/tienda.html">Colección &amp; Tienda</a>
+    <a class="block border-b border-surface-container-high py-3 text-label-lg" href="/#nosotros">Sobre el Taller</a>
+    <a class="block border-b border-surface-container-high py-3 text-label-lg" href="/tienda.html#preguntas">Preguntas Frecuentes</a>
+    <a class="block border-b border-surface-container-high py-3 text-label-lg" href="/#contacto">Contacto</a>
+    <a data-wa class="mt-space-md flex items-center justify-center gap-space-xs rounded-lg bg-primary px-space-md py-space-sm text-label-lg text-on-primary" href="https://wa.me/5493758567371" rel="noopener noreferrer" target="_blank">
+      <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span>Consultar por WhatsApp
+    </a>
+  </nav>
+</header>

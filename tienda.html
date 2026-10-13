@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- @include head -->
+    <title>Colección & Tienda · Areté Vitrofusión</title>
+    <meta name="description" content="Catálogo de piezas de vitrofusión hechas a mano en Apóstoles, Misiones: fuentes, platos, móviles, bijouterie, portasahumerios y más. Filtrá por categoría, color y técnica." />
+    <meta property="og:title" content="Colección & Tienda · Areté Vitrofusión" />
+    <meta property="og:url" content="https://aretearte.com/tienda.html" />
+    <link rel="canonical" href="https://aretearte.com/tienda.html" />
+  </head>
+  <body>
+    <!-- @include header -->
+    <main id="contenido" class="min-h-[calc(100vh-80px)] w-full bg-surface pt-20">
+      <!-- Encabezado -->
+      <section class="relative w-full overflow-hidden bg-surface-container-low px-gutter-mobile py-space-xl lg:px-margin">
+        <div class="mx-auto flex max-w-7xl flex-col justify-between gap-space-lg md:flex-row md:items-end">
+          <div class="flex max-w-2xl flex-col gap-space-xs">
+            <div class="flex items-center gap-space-xs text-label-md tracking-widest text-primary uppercase">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">local_fire_department</span><span>Catálogo &amp; Obras de Autor</span>
+            </div>
+            <h1 class="text-headline-lg-mobile text-on-surface lg:text-headline-lg" data-s="shopTitle">Colección de Vitrofusión Artesanal</h1>
+            <p class="mt-space-xs text-body-lg text-on-surface-variant" data-s="shopText">Obras fundidas en horno en Apóstoles, Misiones. Cada objeto es una composición de luz irrepetible creada a mano por Ivana. Consultá disponibilidad y recibí asesoramiento directo del taller.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-space-sm">
+            <div class="flex items-center gap-space-xs rounded-xl bg-surface-container-lowest px-space-md py-space-sm shadow-sm"><span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">verified</span><span class="text-label-md text-on-surface">100% Hecho a Mano</span></div>
+            <div class="flex items-center gap-space-xs rounded-xl bg-surface-container-lowest px-space-md py-space-sm shadow-sm"><span class="material-symbols-outlined text-[20px] text-tertiary" aria-hidden="true">package_2</span><span class="text-label-md text-on-surface">Embalaje Protegido para Vidrio</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo -->
+      <section class="w-full px-gutter-mobile py-space-xl lg:px-margin">
+        <div class="mx-auto flex max-w-7xl flex-col gap-space-lg">
+          <div class="flex flex-col gap-space-md">
+            <div class="flex w-full flex-col items-center justify-between gap-space-sm sm:flex-row">
+              <div class="relative w-full sm:max-w-lg">
+                <span class="material-symbols-outlined absolute top-1/2 left-4 -translate-y-1/2 text-[20px] text-on-surface-variant" aria-hidden="true">search</span>
+                <input id="search" type="search" maxlength="80" aria-label="Buscar obras" class="w-full rounded-xl bg-surface-container-lowest py-3 pr-4 pl-11 text-body-md text-on-surface shadow-sm transition-all placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 focus:outline-none" placeholder="Buscar por nombre, técnica o color..." />
+              </div>
+              <div class="flex w-full items-center justify-between gap-space-sm sm:w-auto sm:justify-end">
+                <span id="results-count" class="text-label-md text-on-surface-variant" aria-live="polite">Cargando obras…</span>
+                <button id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-panel" class="inline-flex items-center gap-space-xs rounded-lg bg-surface-container-high px-space-md py-space-sm text-label-md text-on-surface lg:hidden">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">tune</span><span>Filtros</span>
+                </button>
+              </div>
+            </div>
+            <div id="cat-pills" class="no-scrollbar flex w-full items-center gap-space-xs overflow-x-auto pb-2" role="tablist" aria-label="Categorías"></div>
+          </div>
+
+          <div class="grid grid-cols-1 items-start gap-space-lg lg:grid-cols-12">
+            <aside id="filter-panel" class="hidden flex-col gap-space-lg rounded-2xl bg-surface-container-low p-space-lg lg:col-span-3 lg:flex" aria-label="Filtros">
+              <div class="flex items-center justify-between pb-space-xs">
+                <span class="font-display text-headline-sm text-on-surface">Filtrar Galería</span>
+                <button id="reset-filters" type="button" class="text-label-md text-primary hover:underline">Reiniciar</button>
+              </div>
+              <fieldset id="f-tecnica" class="hidden flex-col gap-space-sm">
+                <legend class="mb-space-sm text-[11px] font-semibold tracking-wider text-on-surface uppercase">Técnica</legend>
+              </fieldset>
+              <fieldset id="f-color" class="hidden flex-col gap-space-sm">
+                <legend class="mb-space-sm text-[11px] font-semibold tracking-wider text-on-surface uppercase">Paleta de Color</legend>
+              </fieldset>
+              <fieldset id="f-disp" class="hidden flex-col gap-space-sm">
+                <legend class="mb-space-sm text-[11px] font-semibold tracking-wider text-on-surface uppercase">Disponibilidad</legend>
+              </fieldset>
+              <div class="flex flex-col gap-space-xs rounded-xl bg-surface-container-high/60 p-space-md">
+                <div class="flex items-center gap-space-xs text-label-md text-primary"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">brush</span><span>Encargos a Medida</span></div>
+                <p class="text-body-sm text-on-surface-variant">¿Buscás una medida especial o un regalo de autor? Podemos crear piezas personalizadas en tus colores.</p>
+                <a data-wa data-wa-text="Hola Areté, quisiera consultar por un encargo a medida" href="https://wa.me/5493758567371" target="_blank" rel="noopener noreferrer" class="mt-space-xs inline-flex items-center gap-1 text-label-md text-primary hover:underline">Consultar <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></a>
+              </div>
+            </aside>
+            <div class="lg:col-span-9">
+              <div id="product-grid" class="grid grid-cols-1 gap-space-lg md:grid-cols-2 xl:grid-cols-3"></div>
+              <div class="mt-space-xl flex justify-center">
+                <button id="load-more" type="button" class="hidden items-center gap-space-xs rounded-lg bg-surface-container-high px-space-lg py-space-sm text-label-lg text-on-surface hover:bg-surface-container-highest">
+                  Ver más obras <span class="material-symbols-outlined text-[18px]" aria-hidden="true">expand_more</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Franja de confianza -->
+      <section class="w-full bg-surface-container px-gutter-mobile py-space-xl lg:px-margin">
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-space-lg sm:grid-cols-2 md:grid-cols-4" data-list="trust">
+          <template>
+            <div class="flex items-start gap-space-sm"><span data-f="icon" class="material-symbols-outlined mt-1 text-[28px] text-primary"></span><div><h3 data-f="title" class="text-[18px] text-on-surface"></h3><p data-f="text" class="mt-1 text-body-sm text-on-surface-variant"></p></div></div>
+          </template>
+          <div class="flex items-start gap-space-sm"><span class="material-symbols-outlined mt-1 text-[28px] text-primary" aria-hidden="true">handyman</span><div><h3 class="text-[18px] text-on-surface">100% Hecho a Mano</h3><p class="mt-1 text-body-sm text-on-surface-variant">Cada pieza, cortada y fundida en el taller</p></div></div>
+          <div class="flex items-start gap-space-sm"><span class="material-symbols-outlined mt-1 text-[28px] text-primary" aria-hidden="true">local_shipping</span><div><h3 class="text-[18px] text-on-surface">Envíos Cuidados</h3><p class="mt-1 text-body-sm text-on-surface-variant">Embalaje especial para vidrio</p></div></div>
+          <div class="flex items-start gap-space-sm"><span class="material-symbols-outlined mt-1 text-[28px] text-primary" aria-hidden="true">verified</span><div><h3 class="text-[18px] text-on-surface">Piezas de Autor</h3><p class="mt-1 text-body-sm text-on-surface-variant">Exclusivas e irrepetibles</p></div></div>
+          <div class="flex items-start gap-space-sm"><span class="material-symbols-outlined mt-1 text-[28px] text-primary" aria-hidden="true">support_agent</span><div><h3 class="text-[18px] text-on-surface">Trato Directo</h3><p class="mt-1 text-body-sm text-on-surface-variant">Atención por su creadora</p></div></div>
+        </div>
+      </section>
+
+      <!-- Preguntas frecuentes -->
+      <section id="preguntas" class="w-full bg-surface px-gutter-mobile py-space-xl lg:px-margin">
+        <div class="mx-auto flex max-w-4xl flex-col gap-space-lg">
+          <div class="flex flex-col gap-space-xs text-center">
+            <span class="text-label-tag tracking-widest text-primary uppercase">Información &amp; Dudas Frecuentes</span>
+            <h2 class="text-headline-lg-mobile text-on-surface lg:text-headline-lg">Preguntas Frecuentes</h2>
+            <p class="mx-auto max-w-xl text-body-md text-on-surface-variant">Todo lo que necesitás saber sobre nuestras piezas, sus cuidados y cómo hacer tu pedido.</p>
+          </div>
+          <div id="faq-list" class="flex flex-col gap-space-sm"></div>
+        </div>
+      </section>
+
+      <!-- Llamado final -->
+      <section class="w-full px-gutter-mobile pb-space-xl lg:px-margin">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-space-lg rounded-3xl bg-surface-container-high p-space-xl shadow-sm md:flex-row">
+          <div class="flex max-w-xl flex-col gap-space-xs">
+            <span class="text-label-tag tracking-widest text-primary uppercase">Contacto Directo de Atelier</span>
+            <h2 class="text-headline-lg-mobile text-on-surface lg:text-headline-lg" data-s="ctaTitle">¿Tenés una idea o querés reservar una obra?</h2>
+            <p class="mt-1 text-body-md text-on-surface-variant" data-s="ctaText">Hablemos por WhatsApp: te enviamos fotos y medidas de la pieza y coordinamos la entrega sin compromiso.</p>
+            <div class="mt-space-xs flex items-center gap-space-sm text-label-md text-on-surface">
+              <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">location_on</span><span>Taller Areté: <span data-s="location">Apóstoles, Misiones, Argentina</span></span>
+            </div>
+          </div>
+          <a data-wa data-wa-text="Hola Ivana, estoy mirando el catálogo de Areté y me gustaría consultarte por una pieza" class="inline-flex shrink-0 items-center gap-space-xs rounded-xl bg-primary px-space-xl py-4 text-label-lg text-on-primary shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-primary-container" href="https://wa.me/5493758567371" rel="noopener noreferrer" target="_blank">
+            <span class="material-symbols-outlined text-[22px]" aria-hidden="true">chat</span><span>Escribirnos por WhatsApp</span>
+          </a>
+        </div>
+      </section>
+    </main>
+    <!-- @include footer -->
+    <!-- @include cart -->
+    <script type="module" src="/src/pages/shop.js"></script>
+  </body>
+</html>

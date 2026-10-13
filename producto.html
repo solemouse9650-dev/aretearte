@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- @include head -->
+    <title>Obra · Areté Vitrofusión</title>
+    <meta name="description" content="Pieza de vitrofusión hecha a mano en Apóstoles, Misiones. Consultá disponibilidad por WhatsApp." />
+    <meta property="og:title" content="Obra de vitrofusión · Areté" />
+  </head>
+  <body>
+    <!-- @include header -->
+    <main id="contenido" class="min-h-[calc(100vh-80px)] w-full bg-surface pt-20">
+      <!-- Migas de pan -->
+      <section class="w-full bg-surface-container-low/60 px-gutter-mobile py-space-sm lg:px-margin">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-space-sm text-label-md text-on-surface-variant">
+          <nav aria-label="Ruta de navegación" class="flex flex-wrap items-center gap-space-xs">
+            <a class="hover:text-primary" href="/">Inicio</a><span class="text-outline-variant">/</span>
+            <a class="hover:text-primary" href="/tienda.html">Colección &amp; Tienda</a><span class="text-outline-variant">/</span>
+            <a id="bc-cat" class="hover:text-primary" href="/tienda.html">Categoría</a><span class="text-outline-variant">/</span>
+            <span id="bc-name" class="max-w-[200px] truncate font-semibold text-on-surface sm:max-w-xs">Obra</span>
+          </nav>
+          <span id="ref" class="hidden text-label-tag tracking-wider uppercase sm:inline"></span>
+        </div>
+      </section>
+
+      <div id="not-found" class="hidden px-gutter-mobile py-margin text-center">
+        <span class="material-symbols-outlined text-[48px] text-outline" aria-hidden="true">search</span>
+        <h1 class="mt-space-md text-headline-lg-mobile">No encontramos esta obra</h1>
+        <p class="mt-space-xs text-on-surface-variant">Puede que ya no esté disponible. Mirá el resto de la colección o consultanos por WhatsApp.</p>
+        <a href="/tienda.html" class="mt-space-lg inline-flex items-center gap-space-xs rounded-lg bg-primary px-space-lg py-space-md text-label-lg text-on-primary">Ver la colección</a>
+      </div>
+
+      <div id="product-view">
+        <section class="w-full px-gutter-mobile py-space-lg lg:px-margin lg:py-space-xl">
+          <div class="mx-auto grid max-w-7xl grid-cols-1 items-start gap-space-xl lg:grid-cols-12">
+            <!-- Galería -->
+            <div class="flex flex-col gap-space-md lg:col-span-7">
+              <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-surface-container-low shadow-sm">
+                <div id="stage-badges" class="absolute top-4 left-4 z-10 flex flex-wrap gap-2"></div>
+                <img id="main-image" alt="" class="skeleton h-full w-full object-contain transition-opacity duration-300" />
+                <button id="zoom-open" type="button" aria-label="Ampliar fotografía" class="absolute right-4 bottom-4 rounded-full bg-surface/90 p-2.5 text-on-surface shadow-sm backdrop-blur-md transition-transform hover:scale-105 hover:text-primary">
+                  <span class="material-symbols-outlined text-[20px]" aria-hidden="true">zoom_in</span>
+                </button>
+              </div>
+              <div id="thumbs" class="grid grid-cols-4 gap-space-sm sm:grid-cols-5 sm:gap-space-md"></div>
+              <div class="mt-space-sm flex items-center gap-space-sm rounded-xl bg-surface-container-low p-space-md">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-container text-primary"><span class="material-symbols-outlined text-[22px]" aria-hidden="true">verified</span></div>
+                <div>
+                  <p class="text-label-lg text-on-surface">Pieza artesanal de autor</p>
+                  <p class="text-body-sm text-on-surface-variant">Diseñada y fundida a mano en el taller de Areté. Cada horneada es irrepetible.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ficha -->
+            <div class="flex flex-col gap-space-md lg:col-span-5">
+              <div id="badges" class="flex flex-wrap items-center gap-space-xs"></div>
+              <div class="flex flex-col gap-space-xs">
+                <h1 id="name" class="text-headline-lg-mobile tracking-tight text-on-surface lg:text-headline-lg"><span class="skeleton inline-block h-10 w-3/4"></span></h1>
+                <p id="short" class="text-body-lg text-on-surface-variant"></p>
+                <p class="text-body-md text-on-surface-variant">Diseño, fundición y acabado artesanal por <strong class="font-semibold text-on-surface" data-s="artistName">Ivana</strong> en el taller de <span class="font-medium text-primary" data-s="location">Apóstoles, Misiones, Argentina</span>.</p>
+                <p id="price" class="hidden font-display text-headline-md text-primary"></p>
+              </div>
+              <div id="memory-box" class="hidden flex-col gap-space-sm rounded-xl bg-surface-container-low p-space-md shadow-sm">
+                <div class="flex items-center gap-space-xs text-label-md tracking-wider text-primary uppercase"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">local_fire_department</span><span>Memoria de la Pieza</span></div>
+                <p id="memory" class="text-body-md leading-relaxed whitespace-pre-line text-on-surface-variant"></p>
+              </div>
+              <div class="flex flex-col gap-space-sm pt-space-xs">
+                <a id="wa-product" data-wa class="group inline-flex w-full items-center justify-center gap-space-sm rounded-lg bg-primary px-space-lg py-space-md text-label-lg text-on-primary shadow-sm transition-all duration-200 hover:bg-primary-container" href="https://wa.me/5493758567371" rel="noopener noreferrer" target="_blank">
+                  <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" aria-hidden="true">chat</span><span>Consultar Disponibilidad por WhatsApp</span>
+                </a>
+                <div class="grid grid-cols-1 gap-space-sm sm:grid-cols-2">
+                  <button id="add-bag" type="button" class="inline-flex items-center justify-center gap-space-sm rounded-lg bg-surface-container-high px-space-lg py-space-md text-label-lg text-on-surface transition-colors hover:bg-surface-container-highest">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">local_mall</span><span>Agregar a la bolsa</span>
+                  </button>
+                  <a href="#encargo" class="inline-flex items-center justify-center gap-space-sm rounded-lg bg-surface-container-high px-space-lg py-space-md text-label-lg text-on-surface transition-colors hover:bg-surface-container-highest">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">tune</span><span>Pedir otra medida o color</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-start gap-space-sm rounded-lg bg-surface-container-lowest p-space-sm shadow-sm">
+                <span class="material-symbols-outlined mt-0.5 text-[20px] text-tertiary" aria-hidden="true">package_2</span>
+                <div class="flex flex-col">
+                  <span class="text-label-md text-on-surface">Embalaje especial para vidrio</span>
+                  <span class="text-body-sm text-on-surface-variant">Cada pieza viaja protegida contra golpes. Consultanos por envíos a tu localidad.</span>
+                </div>
+              </div>
+              <div class="mt-space-xs w-full rounded-xl bg-surface-container-low p-space-md shadow-sm">
+                <h2 class="mb-space-sm text-headline-sm text-on-surface">Ficha Técnica</h2>
+                <dl id="specs" class="flex flex-col gap-3 text-body-sm"></dl>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Proceso -->
+        <section class="mt-space-md w-full bg-surface-container-low px-gutter-mobile py-space-xl lg:px-margin">
+          <div class="mx-auto flex max-w-7xl flex-col gap-space-lg">
+            <div class="flex flex-col justify-between gap-space-md md:flex-row md:items-end">
+              <div>
+                <span class="text-label-tag font-bold tracking-widest text-primary uppercase">Detrás del Horno</span>
+                <h2 class="mt-1 text-headline-lg-mobile tracking-tight text-on-surface lg:text-headline-lg">Así nace cada pieza</h2>
+              </div>
+              <p class="max-w-lg text-body-md text-on-surface-variant">Cada obra de Areté es un diálogo paciente entre el vidrio y el fuego controlado.</p>
+            </div>
+            <div class="grid grid-cols-1 gap-space-md md:grid-cols-3" data-list="processSteps">
+              <template>
+                <div class="flex flex-col gap-space-md rounded-xl bg-surface p-space-lg shadow-sm">
+                  <span data-f="n" class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-fixed text-label-lg font-bold text-on-primary-fixed-variant"></span>
+                  <div class="flex flex-col gap-1"><h3 data-f="title" class="text-headline-sm text-on-surface"></h3><p data-f="text" class="text-body-sm text-on-surface-variant"></p></div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </section>
+
+        <!-- Encargo a medida -->
+        <section id="encargo" class="w-full px-gutter-mobile py-space-xl lg:px-margin">
+          <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-space-xl rounded-2xl bg-surface-container p-space-lg shadow-sm lg:grid-cols-12 lg:p-space-xl">
+            <div class="flex flex-col gap-space-md lg:col-span-7">
+              <span class="text-label-tag font-bold tracking-widest text-primary uppercase">Encargo Especial a Medida</span>
+              <h2 class="text-headline-lg-mobile tracking-tight text-on-surface lg:text-headline-lg">¿Buscás otra medida o una paleta afín a tu espacio?</h2>
+              <p class="text-body-md text-on-surface-variant">Podés pedir una variante de <em id="custom-name" class="font-semibold not-italic">esta pieza</em> con otras dimensiones o en tus colores preferidos. Te asesoramos directamente desde el taller.</p>
+              <div class="grid grid-cols-1 gap-space-sm text-label-md text-on-surface sm:grid-cols-3">
+                <div class="flex items-center gap-2 rounded-lg bg-surface p-3"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">palette</span><span>Colores a elección</span></div>
+                <div class="flex items-center gap-2 rounded-lg bg-surface p-3"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">aspect_ratio</span><span>Medidas a pedido</span></div>
+                <div class="flex items-center gap-2 rounded-lg bg-surface p-3"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">schedule</span><span>Plazo a coordinar</span></div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-space-md rounded-xl bg-surface p-space-lg shadow-sm lg:col-span-5">
+              <h3 class="text-headline-sm text-on-surface">Enviar propuesta de encargo</h3>
+              <form id="custom-form" class="flex flex-col gap-space-sm" novalidate>
+                <label class="flex flex-col gap-1"><span class="text-label-md text-on-surface-variant">Nombre y Apellido *</span>
+                  <input name="name" required maxlength="80" autocomplete="name" class="w-full rounded-lg bg-surface-container-low px-space-md py-space-sm text-body-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Ej. Mariana Benítez" /></label>
+                <label class="flex flex-col gap-1"><span class="text-label-md text-on-surface-variant">Medidas y colores deseados *</span>
+                  <textarea name="notes" required maxlength="800" rows="3" class="w-full resize-none rounded-lg bg-surface-container-low px-space-md py-space-sm text-body-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Me gustaría una versión de 50 cm en tonos verdes..."></textarea></label>
+                <p id="custom-error" class="hidden text-body-sm text-error" role="alert">Completá tu nombre y lo que buscás.</p>
+                <button class="mt-space-xs inline-flex w-full items-center justify-center gap-space-sm rounded-lg bg-primary px-space-md py-space-sm text-label-lg text-on-primary shadow-sm transition-colors hover:bg-primary-container" type="submit">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">send</span><span>Solicitar cotización por WhatsApp</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Obras afines -->
+        <section id="related-section" class="hidden w-full px-gutter-mobile py-space-xl lg:px-margin">
+          <div class="mx-auto flex max-w-7xl flex-col gap-space-lg">
+            <div class="flex items-end justify-between">
+              <div>
+                <span class="text-label-tag font-bold tracking-widest text-primary uppercase">Diálogos de Vitrofusión</span>
+                <h2 class="mt-1 text-headline-lg-mobile tracking-tight text-on-surface lg:text-headline-lg">Obras Afines de la Colección</h2>
+              </div>
+              <a class="hidden items-center gap-1 text-label-lg text-primary hover:text-primary-container sm:inline-flex" href="/tienda.html">Ver catálogo completo <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+            </div>
+            <div id="related" class="grid grid-cols-1 gap-space-md md:grid-cols-3"></div>
+          </div>
+        </section>
+
+        <!-- Preguntas frecuentes -->
+        <section id="pfaq-section" class="mb-space-md hidden w-full bg-surface-container-low/70 px-gutter-mobile py-space-xl lg:px-margin">
+          <div class="mx-auto flex max-w-4xl flex-col gap-space-lg">
+            <div class="flex flex-col items-center gap-space-xs text-center">
+              <span class="text-label-tag font-bold tracking-widest text-primary uppercase">Claridad &amp; Confianza</span>
+              <h2 class="text-headline-lg-mobile tracking-tight text-on-surface lg:text-headline-lg">Preguntas Frecuentes</h2>
+            </div>
+            <div id="pfaq" class="flex flex-col gap-space-sm"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Visor ampliado -->
+    <div id="zoom-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-inverse-surface/85 p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+      <button id="zoom-close" type="button" aria-label="Cerrar" class="absolute top-4 right-4 rounded-full bg-surface/90 p-2 text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">close</span></button>
+      <button id="zoom-prev" type="button" aria-label="Foto anterior" class="absolute left-3 rounded-full bg-surface/90 p-2 text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[28px]" aria-hidden="true">chevron_left</span></button>
+      <img id="zoom-img" alt="" class="max-h-[90vh] max-w-[92vw] rounded-lg object-contain shadow-2xl" />
+      <button id="zoom-next" type="button" aria-label="Foto siguiente" class="absolute right-3 rounded-full bg-surface/90 p-2 text-on-surface hover:text-primary"><span class="material-symbols-outlined text-[28px]" aria-hidden="true">chevron_right</span></button>
+    </div>
+
+    <!-- @include footer -->
+    <!-- @include cart -->
+    <script type="module" src="/src/pages/product.js"></script>
+  </body>
+</html>
