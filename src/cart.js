@@ -2,6 +2,7 @@
 // por WhatsApp. No es un carrito de compra ni guarda datos personales.
 import { getProducts } from './data.js';
 import { $, h, icon, productUrl, safeImg, waLink } from './dom.js';
+import { lockScroll } from './smooth.js';
 
 const KEY = 'arete-cart';
 const MAX_ITEMS = 30;
@@ -93,7 +94,7 @@ function toggle(open) {
   panel.classList.toggle('translate-x-full', !open);
   panel.setAttribute('aria-hidden', String(!open));
   overlay.classList.toggle('hidden', !open);
-  document.body.style.overflow = open ? 'hidden' : '';
+  lockScroll(open);
   if (open) {
     void render();
     $('#cart-close')?.focus();

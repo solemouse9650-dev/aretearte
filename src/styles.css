@@ -87,8 +87,10 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 6rem;
+  }
+  html:not(.lenis) {
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-surface font-sans text-body-md text-on-surface antialiased;

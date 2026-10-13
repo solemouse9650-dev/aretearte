@@ -2,6 +2,7 @@ import './styles.css';
 import { getSite, getMedia } from './data.js';
 import { $, $$, h, icon, safeHttps, safeImg, waLink } from './dom.js';
 import { initCart } from './cart.js';
+import { initSmoothScroll } from './smooth.js';
 
 /** Aplica los textos editables (data-s="clave") y enlaces del sitio. */
 export function applySite(site) {
@@ -91,6 +92,7 @@ export function errorBox(text = 'No pudimos cargar el catálogo en este momento.
 
 /** Inicialización común a todas las páginas. Devuelve los datos del sitio. */
 export async function initLayout(active) {
+  initSmoothScroll();
   markNav(active);
   initMenu();
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });

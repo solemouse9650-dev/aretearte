@@ -5,6 +5,7 @@ import {
 import { productCard } from '../card.js';
 import { addToCart } from '../cart.js';
 import { renderFaqs } from '../faq.js';
+import { lockScroll } from '../smooth.js';
 import {
   $, AVAILABILITY, formatPrice, h, icon, safeImg, waLink,
 } from '../dom.js';
@@ -137,11 +138,15 @@ if (!product) {
     $('#zoom-img').src = safeImg(images[current].data);
     $('#zoom-img').alt = main.alt;
     modal.classList.replace('hidden', 'flex');
+    lockScroll(true);
     $('#zoom-prev').classList.toggle('hidden', images.length < 2);
     $('#zoom-next').classList.toggle('hidden', images.length < 2);
     $('#zoom-close').focus();
   };
-  const closeZoom = () => modal.classList.replace('flex', 'hidden');
+  const closeZoom = () => {
+    modal.classList.replace('flex', 'hidden');
+    lockScroll(false);
+  };
   $('#zoom-open').addEventListener('click', openZoom);
   main.addEventListener('click', openZoom);
   $('#zoom-close').addEventListener('click', closeZoom);
